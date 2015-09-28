@@ -1,6 +1,6 @@
 {
   "name": "generator-strong-d3",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Yeoman generator for creating D3 projects using TypeScript",
   "license": "MIT",
   "main": "app/index.js",
