@@ -1,5 +1,5 @@
-<% if (transpiler === 'typescript') { %>/// <reference path="../../.tmp/typings/tsd.d.ts" />
-<% } %>
+/// <reference path="../../.tmp/typings/tsd.d.ts" />
+
 import { charting } from './charting';
 
 module <%= _.camelize(appName) %> {

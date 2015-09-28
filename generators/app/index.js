@@ -63,15 +63,14 @@ module.exports = yeoman.generators.Base.extend({
       switch(this.transpiler) {
         case 'typescript':
           this.fs.copyTpl(
-            this.templatePath('_index.module'),
+            this.templatePath('typescript/_index.module.ts'),
             this.destinationPath('src/app/index.module.ts'),
             context
           );
 
           this.fs.copy(
             this.templatePath('typescript/charting.ts'),
-            this.destinationPath('src/app/charting.ts'),
-            context
+            this.destinationPath('src/app/charting.ts')
           );
         break;
 
@@ -83,7 +82,7 @@ module.exports = yeoman.generators.Base.extend({
           );
 
           this.fs.copyTpl(
-            this.templatePath('_index.module'),
+            this.templatePath('babel/_index.module.es6'),
             this.destinationPath('src/app/index.module.es6'),
             context
           );
@@ -120,6 +119,12 @@ module.exports = yeoman.generators.Base.extend({
         transpiler: this.transpiler
       };
 
+      // Copy the whole gulp directory.
+      this.fs.copy(
+        this.templatePath('gulp/*'),
+        this.destinationPath('gulp')
+      );
+
       switch(this.transpiler) {
         case 'typescript':
 
@@ -129,7 +134,8 @@ module.exports = yeoman.generators.Base.extend({
         );
         this.fs.copyTpl(
           this.templatePath('typescript/_tsd'),
-          this.destinationPath('tsd.json')
+          this.destinationPath('tsd.json'),
+          context
         );
         this.fs.copy(
           this.templatePath('typescript/tslint'),
@@ -144,31 +150,36 @@ module.exports = yeoman.generators.Base.extend({
           );
         break;
       }
+
+      this.fs.copyTpl(
+        this.templatePath('_scripts.js'),
+        this.destinationPath('gulp/scripts.js'),
+        context
+      );
+
       this.fs.copy(
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')
       );
-      this.fs.copy(
-        this.templatePath('eslintrc'),
-        this.destinationPath('.eslintrc')
+
+      this.fs.copyTpl(
+        this.templatePath('_eslintrc'),
+        this.destinationPath('.eslintrc'),
+        context
       );
+
       this.fs.copy(
         this.templatePath('gitignore'),
         this.destinationPath('.gitignore')
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('gulpfile'),
-        this.destinationPath('gulpfile.js')
+        this.destinationPath('gulpfile.js'),
+        context
       );
       this.fs.copy(
         this.templatePath('karma'),
         this.destinationPath('karma.conf.js')
-      );
-
-      // Copy the whole gulp directory.
-      this.fs.copy(
-        this.templatePath('gulp/*'),
-        this.destinationPath('gulp')
       );
     }
   },
