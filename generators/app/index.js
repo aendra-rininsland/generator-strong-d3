@@ -9,17 +9,46 @@ module.exports = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the praiseworthy ' + chalk.red('StrongD3') + ' generator!'
+      'Welcome to the totally wicked-hot ' + chalk.red('Strong D3') + ' generator!'
     ));
 
-    var prompts = [{
-      name: 'appName',
-      message: 'What is your app\'s name ?'
-    }];
+    var prompts = [
+      {
+        name: 'appName',
+        message: 'What is your app\'s name ?',
+        default : this.appname
+      },
+      {
+        name: 'transpiler',
+        message: 'How do you want to do type checking?',
+        type: 'list',
+        choices: [
+          {name: 'ES2015 via Babel using Flow', value: 'babel'},
+          {name: 'TypeScript 1.5', value: 'typescript'}
+        ],
+        default : 'babel'
+      },
+      {
+        name: 'abstraction',
+        message: 'Do you want to use a fancy-pants D3 abstraction?',
+        type: 'list',
+        choices: [
+          {name: 'None — let\'s do this using vanilla D3!', value: 'vanilla'},
+          {name: 'C3 — because I want super easy basic charts!', value: 'c3'},
+          {name: 'Vega — because I like declarative formats and writing code is for chumps!', value: 'vega'},
+          {name: 'NVD3 — because I want to create reusable models', value: 'nvd3'},
+          {name: 'D4 — because I want something between Vega and NVD3', value: 'd4'}
+        ],
+        default: 'vanilla'
+      }
+    ];
 
     this.prompt(prompts, function (props) {
-      this.appName = props.appName;
       // To access props later use this.props.someOption;
+      this.appName = props.appName;
+      this.transpiler = props.transpiler;
+      this.abstraction = props.abstraction;
+
 
       done();
     }.bind(this));
@@ -28,8 +57,27 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {
       var context = {
-        appName: this.appName
+        appName: this.appName,
+        abstraction: this.abstraction,
+        transpiler: this.transpiler
       };
+
+      switch(this.transpiler) {
+        case 'typescript':
+          this.fs.copyTpl(
+            this.templatePath('typescript/_index.module.ts'),
+            this.destinationPath('src/app/index.module.ts'),
+            context
+          );
+          this.fs.copyTpl(
+            this.templatePath('typescript/charting.ts'),
+            this.destinationPath('src/app/charting.ts'),
+            context
+          );
+        break;
+        case 'babel':
+        break;
+      }
 
       this.fs.copyTpl(
         this.templatePath('_package.json'),
@@ -46,16 +94,7 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('src/index.html'),
         context
       );
-      this.fs.copyTpl(
-        this.templatePath('_index.module.ts'),
-        this.destinationPath('src/app/index.module.ts'),
-        context
-      );
-      this.fs.copyTpl(
-        this.templatePath('chart.ts'),
-        this.destinationPath('src/app/chart.ts'),
-        context
-      );
+
       this.fs.copy(
         this.templatePath('index.scss'),
         this.destinationPath('src/app/index.scss')
@@ -63,6 +102,35 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     projectfiles: function () {
+      var context = {
+        appName: this.appName,
+        abstraction: this.abstraction,
+        transpiler: this.transpiler
+      };
+      switch(this.transpiler) {
+        case 'typescript':
+
+        this.fs.copy(
+          this.templatePath('typescript/tsconfig'),
+          this.destinationPath('tsconfig.json')
+        );
+        this.fs.copyTpl(
+          this.templatePath('typescript/_tsd'),
+          this.destinationPath('tsd.json')
+        );
+        this.fs.copy(
+          this.templatePath('typescript/tslint'),
+          this.destinationPath('tslint.json')
+        );
+
+        break;
+        case 'babel':
+          this.fs.copyTpl(
+            this.templatePath('babel/.babelrc'),
+            this.destinationPath('.babelrc')
+          );
+        break;
+      }
       this.fs.copy(
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')
@@ -83,22 +151,6 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('karma'),
         this.destinationPath('karma.conf.js')
       );
-      this.fs.copy(
-        this.templatePath('tsconfig'),
-        this.destinationPath('tsconfig.json')
-      );
-      this.fs.copy(
-        this.templatePath('tsconfig'),
-        this.destinationPath('tsconfig.json')
-      );
-      this.fs.copy(
-        this.templatePath('tsd'),
-        this.destinationPath('tsd.json')
-      );
-      this.fs.copy(
-        this.templatePath('tslint'),
-        this.destinationPath('tslint.json')
-      );
 
       // Copy the whole gulp directory.
       this.fs.copy(
@@ -112,7 +164,9 @@ module.exports = yeoman.generators.Base.extend({
     var self = this;
     this.installDependencies({
       callback: function(){
-        self.spawnCommand('tsd', ['install']); // Install TypeScript defs.
+        if (this.transpiler === 'typescript') {
+          self.spawnCommand('tsd', ['install']); // Install TypeScript defs.
+        }
       }
     });
   }

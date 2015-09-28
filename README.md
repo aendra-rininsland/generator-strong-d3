@@ -2,30 +2,31 @@
 
 > [Yeoman](http://yeoman.io) generator
 
-This is a generator heavily based upon [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular) that scaffolds a D3 project with Typescript and Webpack goodies.
+This is a generator heavily based upon [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular) that scaffolds a D3 project with a whole bunch of goodies geared towards using strong typing.
 
-### N.b, I did this as a way to play with TypeScript and TBH I'm not super sold on it.
-### Don't expect me to update this or support it!
+Currently, options available at runtime are:
+
++ Transpiler
+  + Babel using babel-plugin-typecheck
+    + Write fancy-pants ES2015 and use Flow annotations for type checking
+  + TypeScript
+    + Generally better if you still want to write ES5 code but add annotations
++ Abstraction
+  + plain-jane, vanilla D3
+  + C3 — [masayuki0812/c3](https://github.com/masayuki0812/)
+  + Vega - [vega/vega](https://github.com/vega/vega)
+  + NVD3 - [novus/nvd3](https://github.com/novus/nvd3)
+  + D4 - [heavysixer/d4](https://github.com/heavysixer/d4)
 
 ## Getting Started
 
-### What is Yeoman?
-
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
+### To install Yeoman (if new to Yeoman generator)
 
 ```bash
 npm install -g yo
 ```
 
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
+### To install generator-strong-d3
 
 To install generator-strong-d3 from npm, run:
 
@@ -38,13 +39,6 @@ Finally, initiate the generator:
 ```bash
 yo strong-d3
 ```
-
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
 
 ## License
 
