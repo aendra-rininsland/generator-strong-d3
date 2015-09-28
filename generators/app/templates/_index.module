@@ -1,9 +1,8 @@
-<% if (transpiler === 'typescript') { -%>/// <reference path="../../.tmp/typings/tsd.d.ts" />
-
-<% } -%>
+<% if (transpiler === 'typescript') { %>/// <reference path="../../.tmp/typings/tsd.d.ts" />
+<% } %>
 import { charting } from './charting';
 
-module <%= appName %> {
+module <%= _.camelize(appName) %> {
   'use strict';
 
   let axis = new charting.chart('#chart');

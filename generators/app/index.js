@@ -6,7 +6,6 @@ var yosay = require('yosay');
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
     var done = this.async();
-
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the totally wicked-hot ' + chalk.red('Strong D3') + ' generator!'
@@ -48,8 +47,6 @@ module.exports = yeoman.generators.Base.extend({
       this.appName = props.appName;
       this.transpiler = props.transpiler;
       this.abstraction = props.abstraction;
-
-
       done();
     }.bind(this));
   },
@@ -57,6 +54,7 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {
       var context = {
+        _: require('underscore.string'),
         appName: this.appName,
         abstraction: this.abstraction,
         transpiler: this.transpiler
@@ -65,17 +63,30 @@ module.exports = yeoman.generators.Base.extend({
       switch(this.transpiler) {
         case 'typescript':
           this.fs.copyTpl(
-            this.templatePath('typescript/_index.module.ts'),
+            this.templatePath('_index.module'),
             this.destinationPath('src/app/index.module.ts'),
             context
           );
-          this.fs.copyTpl(
+
+          this.fs.copy(
             this.templatePath('typescript/charting.ts'),
             this.destinationPath('src/app/charting.ts'),
             context
           );
         break;
+
         case 'babel':
+          this.fs.copy(
+            this.templatePath('babel/charting.es6'),
+            this.destinationPath('src/app/charting.es6'),
+            context
+          );
+
+          this.fs.copyTpl(
+            this.templatePath('_index.module'),
+            this.destinationPath('src/app/index.module.es6'),
+            context
+          );
         break;
       }
 
@@ -103,10 +114,12 @@ module.exports = yeoman.generators.Base.extend({
 
     projectfiles: function () {
       var context = {
+        _: require('underscore.string'),
         appName: this.appName,
         abstraction: this.abstraction,
         transpiler: this.transpiler
       };
+
       switch(this.transpiler) {
         case 'typescript':
 
@@ -125,7 +138,7 @@ module.exports = yeoman.generators.Base.extend({
 
         break;
         case 'babel':
-          this.fs.copyTpl(
+          this.fs.copy(
             this.templatePath('babel/.babelrc'),
             this.destinationPath('.babelrc')
           );
@@ -164,7 +177,7 @@ module.exports = yeoman.generators.Base.extend({
     var self = this;
     this.installDependencies({
       callback: function(){
-        if (this.transpiler === 'typescript') {
+        if (self.transpiler === 'typescript') {
           self.spawnCommand('tsd', ['install']); // Install TypeScript defs.
         }
       }
