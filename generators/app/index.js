@@ -76,14 +76,14 @@ module.exports = yeoman.generators.Base.extend({
 
         case 'babel':
           this.fs.copy(
-            this.templatePath('babel/charting.es6'),
-            this.destinationPath('src/app/charting.es6'),
+            this.templatePath('babel/charting.js'),
+            this.destinationPath('src/app/charting.js'),
             context
           );
 
           this.fs.copyTpl(
-            this.templatePath('babel/_index.module.es6'),
-            this.destinationPath('src/app/index.module.es6'),
+            this.templatePath('babel/_index.module.js'),
+            this.destinationPath('src/app/index.module.js'),
             context
           );
         break;
@@ -147,6 +147,10 @@ module.exports = yeoman.generators.Base.extend({
           this.fs.copy(
             this.templatePath('babel/.babelrc'),
             this.destinationPath('.babelrc')
+          );
+          this.fs.copy(
+            this.templatePath('babel/.flowconfig'),
+            this.destinationPath('.flowconfig')
           );
         break;
       }

@@ -6,13 +6,13 @@
   "env": {<% if (transpiler === 'babel') { %>
     "es6": true,<% } %>
     "browser": true,
-    "jasmine": true,
-    "require": true
+    "jasmine": true
   },
   "globals": {
     "d3": true,
     "module": true,
-    "inject": true
+    "inject": true,
+    "require": true
   }<% if (transpiler === 'babel') { %>,
   "ecmaFeatures": {
     "modules": true
