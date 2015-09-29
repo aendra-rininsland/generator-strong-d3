@@ -1,7 +1,7 @@
 {
   "name": "generator-strong-d3",
   "version": "0.1.0",
-  "description": "Yeoman generator for creating D3 projects using TypeScript",
+  "description": "Yeoman generator for creating D3 projects using type annotations",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "aendrew/generator-strong-d3",
@@ -20,7 +20,12 @@
     "yeoman-generator",
     "typescript",
     "d3",
-    "webpack"
+    "webpack",
+    "es6",
+    "es2015",
+    "babel",
+    "flow",
+    "type annotations"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
