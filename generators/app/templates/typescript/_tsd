@@ -7,9 +7,9 @@
   "installed": {
     "d3/d3.d.ts": {
       "commit": "32029fcb4e1a3ef8968711b545d77b584435729d"
-    },<% if (abstraction === 'vega') { =%>
+    },<% if (abstraction === 'vega') { %>
     "vega/vega.d.ts": {
       "commit": "d0adccc436197cc7c3559322721e9df86b892bd6"
-    }<% } -%>
+    }<% } %>
   }
 }

@@ -11,7 +11,7 @@ var $ = require('gulp-load-plugins')();
 
 function webpackWrapper(watch, test, callback) {
   var webpackOptions = {
-    <% if (transpiler === 'typescript' { %>resolve: { extensions: ['', '.ts'] },<% } %>
+    <% if (transpiler === 'typescript') { %>resolve: { extensions: ['', '.ts'] },<% } %>
     watch: watch,
     module: { <% if (transpiler === 'typescript') { %>
       preLoaders: [{ test: /\.ts$/, exclude: /node_modules/, loader: 'tslint-loader'}],

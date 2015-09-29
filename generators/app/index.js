@@ -62,11 +62,15 @@ module.exports = yeoman.generators.Base.extend({
 
       switch(this.transpiler) {
         case 'typescript':
-          this.fs.copyTpl(
-            this.templatePath('typescript/_index.module.ts'),
-            this.destinationPath('src/app/index.module.ts'),
-            context
-          );
+          try {
+            this.fs.copyTpl(
+              this.templatePath('typescript/_index.module.ts'),
+              this.destinationPath('src/app/index.module.ts'),
+              context
+            );
+          } catch (e) {
+            throw 'Issue with index.module template.';
+          }
 
           this.fs.copy(
             this.templatePath('typescript/charting.ts'),
@@ -81,29 +85,48 @@ module.exports = yeoman.generators.Base.extend({
             context
           );
 
-          this.fs.copyTpl(
-            this.templatePath('babel/_index.module.js'),
-            this.destinationPath('src/app/index.module.js'),
-            context
-          );
+          try {
+            this.fs.copyTpl(
+              this.templatePath('babel/_index.module.js'),
+              this.destinationPath('src/app/index.module.js'),
+              context
+            );
+          } catch (e) {
+            throw 'Issue with index.module template.';
+          }
         break;
       }
 
-      this.fs.copyTpl(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json'),
-        context
-      );
-      this.fs.copyTpl(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json'),
-        context
-      );
-      this.fs.copyTpl(
-        this.templatePath('_index.html'),
-        this.destinationPath('src/index.html'),
-        context
-      );
+      try {
+        this.fs.copyTpl(
+          this.templatePath('_package.json'),
+          this.destinationPath('package.json'),
+          context
+        );
+      } catch(e) {
+        throw 'Issue with package.json template.';
+      }
+
+      try {
+        this.fs.copyTpl(
+          this.templatePath('_bower.json'),
+          this.destinationPath('bower.json'),
+          context
+        );
+      } catch(e) {
+        throw 'Issue with bower.json template.'.
+      }
+
+      try {
+        this.fs.copyTpl(
+          this.templatePath('_index.html'),
+          this.destinationPath('src/index.html'),
+          context
+        );
+      } catch (e) {
+        throw 'Problem with index.html template.';
+      }
+
 
       this.fs.copy(
         this.templatePath('index.scss'),
@@ -132,11 +155,17 @@ module.exports = yeoman.generators.Base.extend({
           this.templatePath('typescript/tsconfig'),
           this.destinationPath('tsconfig.json')
         );
-        this.fs.copyTpl(
-          this.templatePath('typescript/_tsd'),
-          this.destinationPath('tsd.json'),
-          context
-        );
+
+        try {
+          this.fs.copyTpl(
+            this.templatePath('typescript/_tsd'),
+            this.destinationPath('tsd.json'),
+            context
+          );
+        } catch(e) {
+          throw 'Issue with tsd.json template.';
+        }
+
         this.fs.copy(
           this.templatePath('typescript/tslint'),
           this.destinationPath('tslint.json')
@@ -155,32 +184,48 @@ module.exports = yeoman.generators.Base.extend({
         break;
       }
 
-      this.fs.copyTpl(
-        this.templatePath('_scripts.js'),
-        this.destinationPath('gulp/scripts.js'),
-        context
-      );
+      try {
+        this.fs.copyTpl(
+          this.templatePath('_scripts.js'),
+          this.destinationPath('gulp/scripts.js'),
+          context
+        );
+      } catch(e) {
+        throw 'Issue with scripts.js template.';
+      }
+
 
       this.fs.copy(
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')
       );
 
-      this.fs.copyTpl(
-        this.templatePath('_eslintrc'),
-        this.destinationPath('.eslintrc'),
-        context
-      );
+      try {
+        this.fs.copyTpl(
+          this.templatePath('_eslintrc'),
+          this.destinationPath('.eslintrc'),
+          context
+        );
+      } catch(e) {
+        throw 'Issue with .eslintrc template';
+      }
+
 
       this.fs.copy(
         this.templatePath('gitignore'),
         this.destinationPath('.gitignore')
       );
-      this.fs.copyTpl(
-        this.templatePath('gulpfile'),
-        this.destinationPath('gulpfile.js'),
-        context
-      );
+
+      try {
+        this.fs.copyTpl(
+          this.templatePath('gulpfile'),
+          this.destinationPath('gulpfile.js'),
+          context
+        );
+      } catch(e) {
+        throw 'Issue with gulpfile template.';
+      }
+
       this.fs.copy(
         this.templatePath('karma'),
         this.destinationPath('karma.conf.js')
