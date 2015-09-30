@@ -1,4 +1,6 @@
-module charting {
+var d3 = require('d3');
+
+export module charting {
   export class chart {
     private _group: d3.Selection<any>;
 
