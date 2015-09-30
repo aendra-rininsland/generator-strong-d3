@@ -238,7 +238,12 @@ module.exports = yeoman.generators.Base.extend({
     this.installDependencies({
       callback: function(){
         if (self.transpiler === 'typescript') {
-          self.spawnCommand('tsd', ['install']); // Install TypeScript defs.
+          try {
+            self.spawnCommand('tsd', ['install']); // Install TypeScript defs.
+          } catch(e) {
+            throw 'You need to install TSD: npm install -g tsd';
+          }
+
         }
       }
     });
