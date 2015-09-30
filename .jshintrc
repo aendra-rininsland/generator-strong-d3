@@ -13,5 +13,10 @@
   "quotmark": "single",
   "undef": true,
   "unused": true,
-  "strict": true
+  "strict": true,
+  "globals": {
+    "describe": true,
+    "before": true,
+    "it": true
+  }
 }

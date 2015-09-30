@@ -8,7 +8,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the totally wicked-hot ' + chalk.red('Strong D3') + ' generator!'
+      'Welcome to the totally wicked-sick ' + chalk.red('Strong D3') + ' generator!'
     ));
 
     var prompts = [
@@ -114,7 +114,7 @@ module.exports = yeoman.generators.Base.extend({
           context
         );
       } catch(e) {
-        throw 'Issue with bower.json template.'.
+        throw 'Issue with bower.json template.';
       }
 
       try {
@@ -181,6 +181,16 @@ module.exports = yeoman.generators.Base.extend({
             this.templatePath('babel/.flowconfig'),
             this.destinationPath('.flowconfig')
           );
+
+          try {
+            this.fs.copyTpl(
+              this.templatePath('_eslintrc'),
+              this.destinationPath('.eslintrc'),
+              context
+            );
+          } catch(e) {
+            throw 'Issue with .eslintrc template';
+          }
         break;
       }
 
@@ -199,16 +209,6 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')
       );
-
-      try {
-        this.fs.copyTpl(
-          this.templatePath('_eslintrc'),
-          this.destinationPath('.eslintrc'),
-          context
-        );
-      } catch(e) {
-        throw 'Issue with .eslintrc template';
-      }
 
 
       this.fs.copy(
