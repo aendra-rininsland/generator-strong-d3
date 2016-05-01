@@ -97,6 +97,22 @@ module.exports = yeoman.generators.Base.extend({
             this.templatePath('typescript/charting.ts'),
             this.destinationPath('src/app/charting.ts')
           );
+
+          if (this.testing !== 'none') {
+            switch(this.testing) {
+              case 'mocha':
+              try {
+                this.fs.copyTpl(
+                  this.templatePath('typescript/_charting.spec.ts'),
+                  this.destinationPath('src/app/charting.spec.ts'),
+                  context
+                );
+              } catch (e) {
+                throw 'Issue with charting spec template.';
+              }
+              break;
+            }
+          }
         break;
 
         case 'babel':
@@ -105,6 +121,22 @@ module.exports = yeoman.generators.Base.extend({
             this.destinationPath('src/app/charting.js'),
             context
           );
+
+          if (this.testing !== 'none') {
+            switch(this.testing) {
+              case 'mocha':
+              try {
+                this.fs.copyTpl(
+                  this.templatePath('babel/_charting.spec.js'),
+                  this.destinationPath('src/app/charting.spec.js'),
+                  context
+                );
+              } catch (e) {
+                throw 'Issue with charting spec template.';
+              }
+              break;
+            }
+          }
 
           try {
             this.fs.copyTpl(

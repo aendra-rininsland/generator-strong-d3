@@ -6,10 +6,6 @@ var conf = require('./conf');
 
 var karma = require('karma');
 
-var pathSrcHtml = [
-  path.join(conf.paths.src, '/**/*.html')
-];
-
 var pathSrcJs = [
   path.join(conf.paths.tmp, '/serve/app/index.module.js')
 ];
@@ -17,11 +13,7 @@ var pathSrcJs = [
 function runTests (singleRun, done) {
   var reporters = ['progress'];
   var preprocessors = {};
-
-  pathSrcHtml.forEach(function(path) {
-    preprocessors[path] = ['ng-html2js'];
-  });
-
+  
   if (singleRun) {
     pathSrcJs.forEach(function(path) {
       preprocessors[path] = ['coverage'];
