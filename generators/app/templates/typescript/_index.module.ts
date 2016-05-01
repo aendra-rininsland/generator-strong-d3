@@ -1,10 +1,8 @@
-/// <reference path="../../.tmp/typings/tsd.d.ts" />
-
-import { charting } from './charting';
+import { Chart } from './charting';
 
 module <%= _.camelize(appName) %> {
   'use strict';
 
-  let axis = new charting.chart('#chart');
-  axis.draw();
+  let myChart = new Chart('#chart');
+  myChart.draw();
 }

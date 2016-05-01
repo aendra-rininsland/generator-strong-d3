@@ -1,0 +1,12 @@
+{
+  "name": "<%= _.slugify(appName) %>",
+  "dependencies": {
+    "d3": "github:typed-typings/npm-d3#8bb38bb0ef0a48ac273f6045c26753260ea089df"
+  },
+  "devDependencies": {},
+  "ambientDependencies": {
+<% if (abstraction === 'c3') { %>    "c3": "github:DefinitelyTyped/DefinitelyTyped/c3/c3.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"
+<% } %><% if (abstraction === 'nvd3') { %>    "nvd3": "github:DefinitelyTyped/DefinitelyTyped/nvd3/nvd3.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"
+<% } %><% if (abstraction === 'vega') { %>    "vega": "github:DefinitelyTyped/DefinitelyTyped/vega/vega.d.ts#56295f5058cac7ae458540423c50ac2dcf9fc711"
+<% } %>  }
+}

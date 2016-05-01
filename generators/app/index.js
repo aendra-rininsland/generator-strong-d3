@@ -8,7 +8,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the totally wicked-sick ' + chalk.red('Strong D3') + ' generator!'
+      'Welcome to the smashing ' + chalk.red('strongly-typed D3') + ' generator!'
     ));
 
     var prompts = [
@@ -23,7 +23,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'list',
         choices: [
           {name: 'ES2015 via Babel using Flow', value: 'babel'},
-          {name: 'TypeScript 1.5', value: 'typescript'}
+          {name: 'TypeScript 1.8', value: 'typescript'}
         ],
         default : 'babel'
       },
@@ -144,8 +144,8 @@ module.exports = yeoman.generators.Base.extend({
 
       // Copy the whole gulp directory.
       this.fs.copy(
-        this.templatePath('gulp/*'),
-        this.destinationPath('gulp')
+        this.templatePath('tasks/*'),
+        this.destinationPath('tasks')
       );
 
       switch(this.transpiler) {
@@ -158,12 +158,12 @@ module.exports = yeoman.generators.Base.extend({
 
         try {
           this.fs.copyTpl(
-            this.templatePath('typescript/_tsd'),
-            this.destinationPath('tsd.json'),
+            this.templatePath('typescript/_typings'),
+            this.destinationPath('typings.json'),
             context
           );
         } catch(e) {
-          throw 'Issue with tsd.json template.';
+          throw 'Issue with typings.json template.';
         }
 
         this.fs.copy(
@@ -239,9 +239,9 @@ module.exports = yeoman.generators.Base.extend({
       callback: function(){
         if (self.transpiler === 'typescript') {
           try {
-            self.spawnCommand('tsd', ['install']); // Install TypeScript defs.
+            self.spawnCommand('typings', ['install']); // Install TypeScript defs.
           } catch(e) {
-            throw 'You need to install TSD: npm install -g tsd';
+            throw 'You need to install typings: npm install -g typings';
           }
 
         }

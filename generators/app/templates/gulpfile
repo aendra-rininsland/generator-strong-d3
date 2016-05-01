@@ -1,6 +1,6 @@
 /**
  *  Welcome to your gulpfile!
- *  The gulp tasks are split in several files in the gulp directory
+ *  The gulp tasks are split in several files in the tasks/ directory
  *  because putting all here was really too long
  */
 
@@ -16,7 +16,7 @@ var wrench = require('wrench');
 wrench.readdirSyncRecursive('./gulp').filter(function(file) {
   return (/\.(js|coffee)$/i).test(file);
 }).map(function(file) {
-  require('./gulp/' + file);
+  require('./tasks/' + file);
 });
 
 

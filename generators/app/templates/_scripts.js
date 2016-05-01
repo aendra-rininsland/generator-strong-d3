@@ -15,7 +15,7 @@ function webpackWrapper(watch, test, callback) {
     watch: watch,
     module: { <% if (transpiler === 'typescript') { %>
       preLoaders: [{ test: /\.ts$/, exclude: /node_modules/, loader: 'tslint-loader'}],
-      loaders: [{ test: /\.ts$/, exclude: /node_modules/, loaders: ['awesome-typescript-loader']}]<% } else if (transpiler === 'babel') { %>
+      loaders: [{ test: /\.ts$/, exclude: /node_modules/, loaders: ['ts-loader']}]<% } else if (transpiler === 'babel') { %>
       preLoaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'eslint-loader'}],
       loaders: [{ test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader']}]<% } %>
     },
