@@ -22,7 +22,7 @@ module.exports = yeoman.generators.Base.extend({
         message: 'How do you want to do type checking?',
         type: 'list',
         choices: [
-          {name: 'ES2015 via Babel using Flow', value: 'babel'},
+          {name: 'ES2015 via Babel using FlowType', value: 'babel'},
           {name: 'TypeScript 1.8', value: 'typescript'}
         ],
         default : 'babel'
@@ -39,6 +39,25 @@ module.exports = yeoman.generators.Base.extend({
           {name: 'D4 — because I want something between Vega and NVD3', value: 'd4'}
         ],
         default: 'vanilla'
+      },
+      {
+        name: 'testing',
+        message: 'What testing framework do you want? (More to come!)',
+        type: 'list',
+        choices: [
+          {name: 'Mocha + Chai — Because it\'s choco-licious!', value: 'mocha'},
+          {name: 'None — Testing?! Ain\'t nobody got time for THAT', value: 'none'},
+        ],
+        default: 'none'
+      },
+      {
+        name: 'testingChai',
+        type: 'list',
+        message: 'What would you like to write Chai assertions with?',
+        choices: ['Should', 'Expect'],
+        default: 'should',
+        filter: val => val.toLowerCase(),
+        when: answers => answers.testing === 'mocha'
       }
     ];
 
@@ -47,6 +66,8 @@ module.exports = yeoman.generators.Base.extend({
       this.appName = props.appName;
       this.transpiler = props.transpiler;
       this.abstraction = props.abstraction;
+      this.testing = props.testing;
+      this.testingChai = props.testingChai;
       done();
     }.bind(this));
   },
@@ -105,16 +126,6 @@ module.exports = yeoman.generators.Base.extend({
         );
       } catch(e) {
         throw 'Issue with package.json template.';
-      }
-
-      try {
-        this.fs.copyTpl(
-          this.templatePath('_bower.json'),
-          this.destinationPath('bower.json'),
-          context
-        );
-      } catch(e) {
-        throw 'Issue with bower.json template.';
       }
 
       try {
@@ -197,7 +208,7 @@ module.exports = yeoman.generators.Base.extend({
       try {
         this.fs.copyTpl(
           this.templatePath('_scripts.js'),
-          this.destinationPath('gulp/scripts.js'),
+          this.destinationPath('tasks/scripts.js'),
           context
         );
       } catch(e) {

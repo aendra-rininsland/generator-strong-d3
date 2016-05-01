@@ -40,14 +40,15 @@
     "typings": "~0.8.1",<% } else if (transpiler === 'babel') { %>
     "eslint-loader": "~1.0.0",
     "eslint-plugin-flowtype": "^1.0.0",
-    "babel-core": "~5.8.23",
-    "babel-loader": "~5.3.2",
-    "babel-plugin-typecheck": "^1.2.0",<% } %>
-    "main-bower-files": "~2.9.0",
-    "wiredep": "~2.2.2",
+    "babel-core": "^6.7.7",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-typecheck": "^3.8.0",
+    "babel-plugin-transform-class-properties": "^6.6.0",
+    "babel-plugin-transform-flow-strip-types": "^6.7.0",
+    "babel-plugin-syntax-flow": "^6.5.0",<% } %>
     "karma": "~0.13.9",
-    "karma-jasmine": "~0.3.6",
     "karma-phantomjs-launcher": "~0.2.1",
+    "phantomjs": "^2.1.7",
     "karma-coverage": "~0.5.2",
     "browser-sync": "~2.9.2",
     "http-proxy-middleware": "~0.8.0",

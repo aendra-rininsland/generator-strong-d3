@@ -17,7 +17,7 @@ function webpackWrapper(watch, test, callback) {
       preLoaders: [{ test: /\.ts$/, exclude: /node_modules/, loader: 'tslint-loader'}],
       loaders: [{ test: /\.ts$/, exclude: /node_modules/, loaders: ['ts-loader']}]<% } else if (transpiler === 'babel') { %>
       preLoaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'eslint-loader'}],
-      loaders: [{ test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader']}]<% } %>
+      loaders: [{ test: /\.js$/, exclude: /node_modules/, loaders: ['babel'], presets: ['es2015', 'stage-2']}]<% } %>
     },
     output: { filename: 'index.module.js' }
   };

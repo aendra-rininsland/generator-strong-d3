@@ -1,6 +1,6 @@
 {
   "name": "generator-strong-d3",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "Yeoman generator for creating D3 projects using type annotations",
   "license": "MIT",
   "main": "app/index.js",
@@ -25,7 +25,9 @@
     "es2015",
     "babel",
     "flow",
-    "type annotations"
+    "type annotations",
+    "strong typed",
+    "static typing"
   ],
   "dependencies": {
     "chalk": "^1.0.0",

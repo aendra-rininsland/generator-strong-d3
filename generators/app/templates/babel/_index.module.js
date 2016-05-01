@@ -1,6 +1,6 @@
 'use strict';
 
-import { chart } from './charting';
+import { Chart } from './charting';
 
-let axis = new chart('#chart');
-axis.draw();
+let myChart = new Chart('#chart');
+myChart.draw();

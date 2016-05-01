@@ -29,7 +29,7 @@ describe('strong-d3:app', function () {
       'src/app/index.module.ts',
       'src/app/charting.ts',
       'tsconfig.json',
-      'tsd.json',
+      'typings.json',
       'tslint.json'
     ];
 
