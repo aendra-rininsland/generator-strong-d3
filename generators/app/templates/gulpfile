@@ -7,18 +7,16 @@
 'use strict';
 
 var gulp = require('gulp');
-var wrench = require('wrench');
+var glob = require('glob');
 
 /**
  *  This will load all js or coffee files in the gulp directory
  *  in order to load all gulp tasks
  */
-wrench.readdirSyncRecursive('./tasks').filter(function(file) {
-  return (/\.(js|coffee)$/i).test(file);
-}).map(function(file) {
-  require('./tasks/' + file);
-});
 
+glob.sync('tasks/**/*.js').forEach(function(v){
+  require('./' + v);
+});
 
 /**
  *  Default task clean temporaries directories and launch the

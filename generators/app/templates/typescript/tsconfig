@@ -3,8 +3,27 @@
     "target": "es5",
     "module": "commonjs"
   },
+  "filesGlob": [
+    "**/*.ts",
+    "**/*.tsx",
+    "typings/**/*.ts"
+  ],
   "exclude": [
     "typings/browser.d.ts",
-    "typings/browser"
-  ]
+    "typings/browser",
+    "node_modules"
+  ],
+  "compileOnSave": false,
+  "files": [
+    "src/app/charting.spec.ts",
+    "src/app/charting.ts",
+    "src/app/index.module.ts",
+    "typings/main.d.ts",
+    "typings/main/ambient/chai/chai.d.ts",
+    "typings/main/ambient/mocha/mocha.d.ts",
+    "typings/main/definitions/d3/d3.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
 }

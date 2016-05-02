@@ -13,10 +13,10 @@ var pathSrcJs = [
 function runTests (singleRun, done) {
   var reporters = ['progress'];
   var preprocessors = {};
-  
+
   if (singleRun) {
     pathSrcJs.forEach(function(path) {
-      preprocessors[path] = ['coverage'];
+      preprocessors[path] = ['coverage', 'webpack'];
     });
     reporters.push('coverage');
   }

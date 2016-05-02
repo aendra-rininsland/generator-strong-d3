@@ -48,14 +48,14 @@ module.exports = yeoman.generators.Base.extend({
           {name: 'Mocha + Chai — Because it\'s choco-licious!', value: 'mocha'},
           {name: 'None — Testing?! Ain\'t nobody got time for THAT', value: 'none'},
         ],
-        default: 'none'
+        default: 'mocha'
       },
       {
         name: 'testingChai',
         type: 'list',
         message: 'What would you like to write Chai assertions with?',
         choices: ['Should', 'Expect'],
-        default: 'should',
+        default: 'Should',
         filter: val => val.toLowerCase(),
         when: answers => answers.testing === 'mocha'
       }
@@ -78,7 +78,8 @@ module.exports = yeoman.generators.Base.extend({
         _: require('underscore.string'),
         appName: this.appName,
         abstraction: this.abstraction,
-        transpiler: this.transpiler
+        transpiler: this.transpiler,
+        testing: this.testing
       };
 
       switch(this.transpiler) {
@@ -157,7 +158,8 @@ module.exports = yeoman.generators.Base.extend({
           context
         );
       } catch(e) {
-        throw 'Issue with package.json template.';
+        comsole.dir(e);
+        throw new Error('Issue with package.json template.');
       }
 
       try {
@@ -182,7 +184,8 @@ module.exports = yeoman.generators.Base.extend({
         _: require('underscore.string'),
         appName: this.appName,
         abstraction: this.abstraction,
-        transpiler: this.transpiler
+        transpiler: this.transpiler,
+        testing: this.testing
       };
 
       // Copy the whole gulp directory.
@@ -206,6 +209,7 @@ module.exports = yeoman.generators.Base.extend({
             context
           );
         } catch(e) {
+          console.dir(e);
           throw 'Issue with typings.json template.';
         }
 

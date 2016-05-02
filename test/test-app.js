@@ -28,6 +28,7 @@ describe('strong-d3:app', function () {
     var tsFiles = [
       'src/app/index.module.ts',
       'src/app/charting.ts',
+      'src/app/charting.spec.ts',
       'tsconfig.json',
       'typings.json',
       'tslint.json'
@@ -40,7 +41,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'typescript',
-            abstraction: 'vanilla'
+            abstraction: 'vanilla',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });
@@ -57,7 +60,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'typescript',
-            abstraction: 'c3'
+            abstraction: 'c3',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });
@@ -74,7 +79,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'typescript',
-            abstraction: 'nvd3'
+            abstraction: 'nvd3',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });
@@ -91,7 +98,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'typescript',
-            abstraction: 'vega'
+            abstraction: 'vega',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });
@@ -108,7 +117,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'typescript',
-            abstraction: 'd4'
+            abstraction: 'd4',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });
@@ -122,6 +133,7 @@ describe('strong-d3:app', function () {
   describe('it should work with Babel + Flow', function() {
     var babelFiles = [
       'src/app/charting.js',
+      'src/app/charting.spec.js',
       'src/app/index.module.js',
       '.babelrc',
       '.flowconfig',
@@ -135,7 +147,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'babel',
-            abstraction: 'vanilla'
+            abstraction: 'vanilla',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });
@@ -152,7 +166,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'babel',
-            abstraction: 'c3'
+            abstraction: 'c3',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });
@@ -169,7 +185,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'babel',
-            abstraction: 'nvd3'
+            abstraction: 'nvd3',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });
@@ -186,7 +204,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'babel',
-            abstraction: 'vega'
+            abstraction: 'vega',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });
@@ -203,7 +223,9 @@ describe('strong-d3:app', function () {
           .withPrompts({
             appName: 'mock app',
             transpiler: 'babel',
-            abstraction: 'd4'
+            abstraction: 'd4',
+            testing: 'mocha',
+            testingChai: 'should'
           })
           .on('end', done);
       });

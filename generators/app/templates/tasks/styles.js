@@ -7,7 +7,6 @@ var conf = require('./conf');
 var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
-var _ = require('lodash');
 
 gulp.task('styles', function () {
   var sassOptions = {

@@ -3,7 +3,10 @@
   "dependencies": {
     "d3": "github:typed-typings/npm-d3#8bb38bb0ef0a48ac273f6045c26753260ea089df"
   },
-  "devDependencies": {},
+  "ambientDevDependencies": {<% if (testing === 'mocha') { %>
+    "chai": "github:DefinitelyTyped/DefinitelyTyped/chai/chai.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd",
+    "mocha": "github:DefinitelyTyped/DefinitelyTyped/mocha/mocha.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"<% } %>
+  },
   "ambientDependencies": {
 <% if (abstraction === 'c3') { %>    "c3": "github:DefinitelyTyped/DefinitelyTyped/c3/c3.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"
 <% } %><% if (abstraction === 'nvd3') { %>    "nvd3": "github:DefinitelyTyped/DefinitelyTyped/nvd3/nvd3.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"

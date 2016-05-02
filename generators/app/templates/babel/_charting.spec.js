@@ -1,6 +1,6 @@
-import * as chai from 'chai';
 import { Chart } from './charting';
 import * as d3 from 'd3';
+import * as chai from 'chai';
 
 var should = chai.should();
 
